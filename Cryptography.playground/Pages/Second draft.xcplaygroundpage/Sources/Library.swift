@@ -13,20 +13,15 @@ func number(for letter: Letter) -> Int? {
     return result
 }
 
-func validate(number: Int) -> Int {
-    if number > 25 {
-        return number - 26
-    }
-    if number < 0 {
-        return number + 26
-    }
-    return number
+func mod(_ a: Int, _ b: Int) -> Int {
+    let r = a % b;
+    return r < 0 ? r + b : r;
 }
 
 func transform(char: Letter, offset: Int, op: @escaping (Int, Int) -> Int) -> Letter {
     guard let n = number(for: char) else { return char }
     let sum = op(n, offset)
-    let validated = validate(number: sum)
+    let validated = mod(sum, 26)
     let result = letter(for: validated)
     return result
 }
@@ -39,7 +34,6 @@ func transform(message: String, key: Letter, op: @escaping (Int, Int) -> Int) ->
 }
 
 public func encrypt(message: String, key: Letter) -> String {
-    
     return transform(message: message.lowercased(), key: key, op: +)
 }
 

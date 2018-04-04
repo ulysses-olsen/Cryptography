@@ -3,5 +3,6 @@
     <pages>
         <page name='First Draft'/>
         <page name='Second draft'/>
+        <page name='Scratch'/>
     </pages>
 </playground>
